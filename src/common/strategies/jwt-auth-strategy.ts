@@ -26,9 +26,9 @@ export class JwtAuthStrategy extends PassportStrategy(Strategy, 'jwt-auth') {
 
   async validate(payload: IJwtPayload) {
     const user = await this.userService.findOne(payload.sub);
-    if (!user?.active) throw new UnauthorizedException(userMessages.ACCOUNT_INACTIVE);
-    this.userService.updateLastLogin(user.id);
-    delete user.password;
+    // if (!user?.active) throw new UnauthorizedException(userMessages.ACCOUNT_INACTIVE);
+    // this.userService.updateLastLogin(user.id);
+    // delete user.password;
     return user;
   }
 }

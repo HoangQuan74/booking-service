@@ -1,1 +1,1 @@
-export * from './tranform.interceptor'
+export * from './tranform.interceptor';
