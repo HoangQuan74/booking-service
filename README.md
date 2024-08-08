@@ -68,3 +68,40 @@ yarn format
 **Nestjs:** 9.3.0
 
 **Mysql:** 8.1.\*
+
+II 
+# XML to JSON Converter and NestJS API
+
+This project includes two XML to JSON converters and a NestJS API to serve the converted data.
+
+## Custom XML to JSON Converter
+
+The custom converter uses a recursive approach to parse the XML structure. Here's how it works:
+
+1. It starts by parsing the root element of the XML.
+2. For each element, it checks if the element has text content. If so, it returns the text content.
+3. If the element has child elements, it recursively parses each child.
+4. It handles cases where multiple child elements have the same tag by converting the value to a list.
+
+The time complexity of this algorithm is O(n), where n is the number of characters in the XML string, as it processes each character once.
+
+## Library XML to JSON Converter
+
+The library converter uses the `xml2js` library, which provides a simple way to convert XML to a JavaScript object.
+
+## API Design
+
+The API includes one main endpoint:
+
+- `/booking/<confirmation_no>`: A GET endpoint protected by JWT authentication that returns the booking data for the given confirmation number.
+
+The API reads the corresponding XML file based on the confirmation number, converts it to JSON using both converters, and returns the results.
+
+## Design Choices
+
+- The custom converter was designed to be flexible and handle various XML structures without relying on external libraries.
+- The library converter was included to provide a comparison and a more robust solution for complex XML structures.
+- JWT authentication was used to secure the API and demonstrate how to implement protected routes in NestJS.
+- The API design allows for easy comparison between the custom and library converters.
+
+To use the API, you need to implement a login endpoint to obtain a JWT token, then use this token in the Authorization header when making requests to the `/booking/<confirmation_no>` endpoint.
